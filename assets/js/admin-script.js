@@ -26,7 +26,8 @@
 				var spinner = $( this ).next( '.spinner' ),
 				    data    = {
 						'action'   : 'bppfc_duplicate_field',
-						'field_id' : $( this ).data( 'id' )
+						'field_id' : $( this ).data( 'id' ),
+						'security' : bppfc_obj.field_duplicate_nounce
 					}
 
 				// Show spinner.

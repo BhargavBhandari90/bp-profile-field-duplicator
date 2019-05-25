@@ -64,7 +64,8 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 			?>
 			<script type="text/javascript">
 				var bppfc_obj = {
-					confirmation_string : '<?php echo esc_html__( 'Are you sure you want to duplicate this?', 'bp-profile-field-duplicator' ); ?>'
+					confirmation_string    : '<?php echo esc_html__( 'Are you sure you want to duplicate this?', 'bp-profile-field-duplicator' ); ?>',
+					field_duplicate_nounce : '<?php echo esc_html( wp_create_nonce( 'field-duplicator-nounce' ) ); ?>'
 				};
 			</script>
 			<?php
@@ -92,6 +93,8 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 		 */
 		public function bppfc_duplicate_profile_field() {
 
+			check_ajax_referer( 'field-duplicator-nounce', 'security' );
+
 			// Bail, if anything goes wrong.
 			if ( ! function_exists( 'bp_is_active' )
 				|| empty( $_POST )
@@ -109,10 +112,12 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 			}
 
 			// Get field object.
-			$field = xprofile_get_field( $field_id );
+			$field      = xprofile_get_field( $field_id );
+			$field_type = $field->type;
+			$options    = '';
 
-			if ( empty( $field ) ) {
-				wp_send_json_error( esc_html__( 'Field is not available.', 'bp-profile-field-duplicator' ) );
+			if ( 'checkbox' === $field_type ) {
+				$options = $field->get_children();
 			}
 
 			// Set args for creating new field.
@@ -135,6 +140,10 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 
 			// If field creation successful, then generate new field element.
 			if ( $duplicate_field_id ) {
+
+				if ( 'checkbox' === $field_type && ! empty( $options ) ) {
+					$this->bppfc_insert_child( $duplicate_field_id, $options );
+				}
 
 				$duplicate_field = xprofile_get_field( $duplicate_field_id ); // Get duplicate field object.
 				$field_group     = xprofile_get_field_group( $field->group_id ); // Get field group object.
@@ -159,6 +168,45 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 			}
 
 			wp_send_json_error( esc_html__( 'Fail to create duplicate field.', 'bp-profile-field-duplicator' ) );
+
+		}
+
+		/**
+		 * Insert options for checkbox type field.
+		 *
+		 * @param  integer $parent_id Parent Field ID.
+		 * @param  array   $options   Array of child field object.
+		 */
+		public function bppfc_insert_child( $parent_id = 0, $options = array() ) {
+
+			// Bail, if anything goes wrong.
+			if ( empty( $options )
+				|| empty( $parent_id )
+				|| ! function_exists( 'xprofile_insert_field' ) ) {
+				return;
+			}
+
+			foreach ( $options as $key => $option ) {
+
+				// Set args for creating new field.
+				$field_args = array(
+					'field_group_id'    => (int) $option->group_id,
+					'parent_id'         => (int) $parent_id,
+					'type'              => $option->type,
+					'name'              => $option->name,
+					'description'       => $option->description,
+					'is_required'       => (bool) $option->is_required,
+					'can_delete'        => true,
+					'order_by'          => $option->order_by,
+					'is_default_option' => (bool) $option->is_default_option,
+					'option_order'      => (int) $option->option_order,
+					'field_order'       => (int) $option->field_order,
+				);
+
+				// Insert options.
+				xprofile_insert_field( $field_args );
+
+			}
 
 		}
 
