@@ -33,8 +33,8 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 			// Add script in admin head.
 			add_action( 'admin_head', array( $this, 'bppfc_admin_head' ) );
 
-			// Enqueue custom script.
-			add_action( 'admin_enqueue_scripts', array( $this, 'bppfc_enqueue_script' ) );
+			// Enqueue custom script in footer.
+			add_action( 'admin_print_footer_scripts', array( $this, 'bppfc_enqueue_script' ), 60 );
 
 			// Duplicate the profile field.
 			add_action( 'wp_ajax_bppfc_duplicate_field', array( $this, 'bppfc_duplicate_profile_field' ) );
@@ -73,18 +73,21 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 
 		/**
 		 * Enqueue custom script for the plugin.
-		 *
-		 * @param  string $hook Hook name of current page in admin section.
-		 * @return void.
 		 */
-		public function bppfc_enqueue_script( $hook ) {
+		public function bppfc_enqueue_script() {
 
-			// If it's not profile field page, then don't add the script.
-			if ( 'users_page_bp-profile-setup' !== $hook ) {
+			global $pagenow;
+
+			// Check if it's profile field page or not.
+			$is_profile_field_page = ( isset( $_GET['page'] ) && 'bp-profile-setup' === $_GET['page'] && 'users.php' === $pagenow )
+				? true
+				: false;
+
+			if ( ! $is_profile_field_page ) {
 				return;
 			}
 
-			wp_enqueue_script( 'bppfc_duplicator_script', BPPFC_URL . 'assets/js/admin-script.js' );
+			echo '<script type="text/javascript" src="' . BPPFC_URL . 'assets/js/admin-script.js' . '"></script>'; // @codingStandardsIgnoreLine
 
 		}
 
@@ -116,7 +119,14 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 			$field_type = $field->type;
 			$options    = '';
 
-			if ( 'checkbox' === $field_type ) {
+			$options_field_type = array(
+				'checkbox'       => true,
+				'selectbox'      => true,
+				'multiselectbox' => true,
+				'radio'          => true,
+			);
+
+			if ( isset( $options_field_type[ $field_type ] ) ) {
 				$options = $field->get_children();
 			}
 
@@ -141,7 +151,7 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 			// If field creation successful, then generate new field element.
 			if ( $duplicate_field_id ) {
 
-				if ( 'checkbox' === $field_type && ! empty( $options ) ) {
+				if ( isset( $options_field_type[ $field_type ] ) && ! empty( $options ) ) {
 					$this->bppfc_insert_child( $duplicate_field_id, $options );
 				}
 
@@ -152,14 +162,17 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 				ob_start();
 				xprofile_admin_field( $duplicate_field, $field_group, '' );
 				$duplicate_field_element = ob_get_contents();
+				wp_editor( '', 'xprofile_textarea_' . $duplicate_field_id );
 				ob_end_clean();
 
 				// Create array for sending json response.
 				$response = array(
-					'success'           => true,
-					'original_field_id' => $field_id,
-					'group_id'          => $field->group_id,
-					'duplicate_field'   => $duplicate_field_element,
+					'success'            => true,
+					'original_field_id'  => $field_id,
+					'field_type'         => $field_type,
+					'group_id'           => $field->group_id,
+					'duplicate_field_id' => $duplicate_field_id,
+					'duplicate_field'    => $duplicate_field_element,
 				);
 
 				// Send response.

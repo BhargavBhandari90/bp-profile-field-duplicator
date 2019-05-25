@@ -44,6 +44,23 @@
 						// Add field after the original field.
 						$( '#tabs-' + group_id + ' #draggable_field_' + original_field_id ).after( response.duplicate_field );
 
+						// If it's textarea, then initiate the tunyMCE editor.
+						if ( 'textarea' === response.field_type ) {
+
+							tinymce.init({
+								selector:'#xprofile_textarea_' + response.duplicate_field_id,
+								theme: "modern",
+								skin: "lightgray",
+								toolbar: "bold,italic,underline,blockquote,strikethrough,bullist,numlist,alignleft,aligncenter,alignright,undo,redo,link,fullscreen",
+								menubar: false,
+								branding: false,
+								wpautop: true,
+								indent: false,
+								tabfocus_elements: ":prev,:next",
+							});
+
+						}
+
 						// Hide spinner.
 						spinner.removeClass( 'is-active' );
 
