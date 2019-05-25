@@ -7,7 +7,7 @@
  * Author URI:      bhargavb.wordpress.com
  * Text Domain:     bp-profile-field-duplicator
  * Domain Path:     /languages
- * Version:         0.1.0
+ * Version:         1.0.0
  *
  * @package         Bp_Profile_Field_Duplicator
  */
