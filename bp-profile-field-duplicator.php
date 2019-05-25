@@ -4,7 +4,6 @@
  * Plugin URI:      bhargavb.wordpress.com
  * Description:     Make a duplicate of BuddyPress profile fields.
  * Author:          Bunty
- * Author URI:      bhargavb.wordpress.com
  * Text Domain:     bp-profile-field-duplicator
  * Domain Path:     /languages
  * Version:         1.0.0
