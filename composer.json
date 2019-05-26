@@ -1,0 +1,25 @@
+{
+    "name": "BhargavBhandari90/bp-profile-field-duplicator",
+    "type": "wp-plugin",
+    "description": "Make a duplicate of BuddyPress profile fields.",
+    "homepage": "https://github.com/BhargavBhandari90/bp-profile-field-duplicator",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bhargav Bhandari",
+            "email": "bn.bhandari90@gmail.com",
+            "homepage": "https://bhargavb.wordpress.com"
+        }
+    ],
+    "scripts": {
+        "lint": "run-linter-tests",
+        "phpcs": "run-phpcs-tests",
+        "test": [
+            "@lint",
+            "@phpcs"
+        ]
+    },
+    "support": {
+        "issues": "https://github.com/BhargavBhandari90/bp-profile-field-duplicator/issues"
+    }
+}
