@@ -12,10 +12,8 @@
         }
     ],
     "scripts": {
-        "lint": "run-linter-tests",
         "phpcs": "run-phpcs-tests",
         "test": [
-            "@lint",
             "@phpcs"
         ]
     },
