@@ -1,1 +1,46 @@
+sudo: false
+dist: trusty
+
 language: php
+php: 7.2
+
+branches:
+  only:
+    - master
+
+install:
+  - composer install
+  - composer prepare-tests
+
+jobs:
+  include:
+    - stage: sniff
+      script:
+        - composer lint
+        - composer phpcs
+      env: BUILD=sniff
+    - stage: test
+      php: 7.3
+      env: WP_VERSION=latest
+    - stage: test
+      php: 7.2
+      env: WP_VERSION=latest
+    - stage: test
+      php: 7.1
+      env: WP_VERSION=latest
+    - stage: test
+      php: 7.0
+      env: WP_VERSION=latest
+    - stage: test
+      php: 5.6
+      env: WP_VERSION=latest
+    - stage: test
+      php: 5.6
+      env: WP_VERSION=3.7.11
+    - stage: test
+      php: 5.6
+      env: WP_VERSION=trunk
+    - stage: test
+      php: 5.4
+      dist: precise
+env: WP_VERSION=5.1
