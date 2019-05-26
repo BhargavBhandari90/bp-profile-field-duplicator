@@ -10,13 +10,11 @@ branches:
 
 install:
   - composer install
-  - composer prepare-tests
 
 jobs:
   include:
     - stage: sniff
       script:
-        - composer lint
         - composer phpcs
       env: BUILD=sniff
     - stage: test
