@@ -30,7 +30,7 @@ So now you don't need to add the same field again and again. It's just a matter 
 
 ## Screenshots ##
 ### 1. Duplicate any profile field by clicking on "Duplicate This" button screenshot-1.jpg. ###
-![Duplicate any profile field by clicking on "Duplicate This" button screenshot-1.jpg.](http://ps.w.org/buddypress-profile-field-duplicator/assets/screenshot-1.png)
+![Duplicate any profile field by clicking on "Duplicate This" button screenshot-1.jpg.](https://user-images.githubusercontent.com/19459637/58383813-a34f2200-7ff8-11e9-9333-e681c8c94100.jpg)
 
 
 ## Changelog ##
