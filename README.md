@@ -1,9 +1,18 @@
 # BuddyPress Profile Field Duplicator #
+**Contributors:** bhargavbhandari90  
+**Donate link:** https://www.paypal.me/BnB90/50  
+**Tags:** buddypress, profile field, duplicate  
+**Requires at least:** 4.0  
+**Tested up to:** 5.2  
+**Requires PHP:** 5.6  
+**Stable tag:** 1.0.0  
+**License:** GPLv2 or later  
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
-
-#### Make a duplicate of BuddyPress profile fields.
+Make a duplicate of BuddyPress profile fields in one click.
 
 ## Description ##
+
 Sometimes people needs to add the same profile field many times. Specially when it comes to add muti-select, radio, checkbox ect., then it will be time consuming.
 
 So now you don't need to add the same field again and again. It's just a matter of one click now.
@@ -14,14 +23,16 @@ So now you don't need to add the same field again and again. It's just a matter 
 * Click on "Duplicate This" in profile field section.
 * And that field will be duplicated. That's it.
 
-## Screenshot ##
-![screenshot1](https://user-images.githubusercontent.com/19459637/58373393-36ca1980-7f4b-11e9-9cea-cf742c6dd14a.png)
-
 
 ## Installation ##
 1. Upload "bp-profile-field-duplicator" to the "/wp-content/plugins/" directory usong FTP or upload plugin zip using upload button.
 2. Activate the plugin through the "Plugins" menu in WordPress.
 
+## Screenshots ##
+### 1. Duplicate any profile field by clicking on "Duplicate This" button screenshot-1.jpg. ###
+![Duplicate any profile field by clicking on "Duplicate This" button screenshot-1.jpg.](http://ps.w.org/buddypress-profile-field-duplicator/assets/screenshot-1.png)
+
+
 ## Changelog ##
-= 1.0.0 =
+### 1.0.0 ###
 * Initial release.
