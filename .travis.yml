@@ -15,7 +15,7 @@ jobs:
   include:
     - stage: sniff
       script:
-        - composer phpcs
+        - phpcs .
       env: BUILD=sniff
     - stage: test
       php: 7.3

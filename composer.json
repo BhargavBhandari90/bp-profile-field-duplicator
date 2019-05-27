@@ -9,11 +9,8 @@
             "homepage": "https://bhargavb.wordpress.com"
         }
     ],
-    "scripts": {
-        "phpcs": "run-phpcs-tests",
-        "test": [
-            "@phpcs"
-        ]
+     "require-dev": {
+        "squizlabs/php_codesniffer": "3.*"
     },
     "support": {
         "issues": "https://github.com/BhargavBhandari90/bp-profile-field-duplicator/issues"
