@@ -23,6 +23,7 @@ So now you don't need to add the same field again and again. It's just a matter 
 * Click on "Duplicate This" in profile field section.
 * And that field will be duplicated. That's it.
 
+https://www.youtube.com/watch?v=6FUTX_OdEqo
 
 ## Installation ##
 1. Upload "bp-profile-field-duplicator" to the "/wp-content/plugins/" directory usong FTP or upload plugin zip using upload button.
