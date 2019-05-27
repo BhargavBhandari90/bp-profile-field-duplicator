@@ -9,7 +9,7 @@ branches:
     - master
 
 install:
-  - composer install
+  - composer global require "squizlabs/php_codesniffer=*"
 
 jobs:
   include:
