@@ -13,14 +13,3 @@ php:
 script:
   # Run your tests here.
   - echo 'Tested'
-
-deploy:
-  #
-  # Auto-deploys the built plugin to WordPress.org on push to master branch
-  #
-  provider: script
-  skip_cleanup: true
-  script: ./scripts/deploy.sh
-  on:
-    branch: master
-    php: 7.0
