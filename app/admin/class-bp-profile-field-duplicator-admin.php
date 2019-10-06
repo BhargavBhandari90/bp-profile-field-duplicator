@@ -30,11 +30,8 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 			// Add duplicator button.
 			add_action( 'xprofile_admin_field_action', array( $this, 'bppfc_add_duplicator_button' ) );
 
-			// Add script in admin head.
-			add_action( 'admin_head', array( $this, 'bppfc_admin_head' ) );
-
 			// Enqueue custom script in footer.
-			add_action( 'admin_print_footer_scripts', array( $this, 'bppfc_enqueue_script' ), 60 );
+			add_action( 'admin_enqueue_scripts', array( $this, 'bppfc_enqueue_script' ), 60 );
 
 			// Duplicate the profile field.
 			add_action( 'wp_ajax_bppfc_duplicate_field', array( $this, 'bppfc_duplicate_profile_field' ) );
@@ -58,36 +55,26 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 		}
 
 		/**
-		 * Add object for adding necessary data to be sued in custom script.
-		 */
-		public function bppfc_admin_head() {
-			?>
-			<script type="text/javascript">
-				var bppfc_obj = {
-					confirmation_string    : '<?php echo esc_html__( 'Are you sure you want to duplicate this?', 'bp-profile-field-duplicator' ); ?>',
-					field_duplicate_nounce : '<?php echo esc_html( wp_create_nonce( 'field-duplicator-nounce' ) ); ?>'
-				};
-			</script>
-			<?php
-		}
-
-		/**
 		 * Enqueue custom script for the plugin.
 		 */
-		public function bppfc_enqueue_script() {
+		public function bppfc_enqueue_script( $hook ) {
 
 			global $pagenow;
 
 			// Check if it's profile field page or not.
-			$is_profile_field_page = ( isset( $_GET['page'] ) && 'bp-profile-setup' === $_GET['page'] && 'users.php' === $pagenow )
-				? true
-				: false;
-
-			if ( ! $is_profile_field_page ) {
+			if ( 'users_page_bp-profile-setup' !== $hook ) {
 				return;
 			}
 
-			echo '<script type="text/javascript" src="' . BPPFC_URL . 'assets/js/admin-script.js' . '"></script>'; // @codingStandardsIgnoreLine
+			$setting_arr = array(
+				'confirmation_string'    => esc_html__( 'Are you sure you want to duplicate this?', 'bp-profile-field-duplicator' ),
+				'field_duplicate_nounce' => esc_html( wp_create_nonce( 'field-duplicator-nounce' ) ),
+
+			);
+
+			wp_enqueue_script( 'field-duplicator-script', BPPFC_URL . 'assets/js/plugin.min.js' );
+
+			wp_localize_script( 'field-duplicator-script', 'bppfc_obj', $setting_arr );
 
 		}
 
