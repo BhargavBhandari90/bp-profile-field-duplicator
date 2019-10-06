@@ -3,6 +3,16 @@
 
 # Tell Travis CI we're using PHP
 language: php
+ 
+sudo: false
+ 
+php:
+  - 7.0
+  - 7.1
+ 
+script:
+  # Run your tests here.
+  - echo 'Tested'
 
 deploy:
   #
@@ -13,4 +23,4 @@ deploy:
   script: ./scripts/deploy.sh
   on:
     branch: master
-    php: 7.2
+    php: 7.0
