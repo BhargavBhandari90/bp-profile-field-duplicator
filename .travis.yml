@@ -6,7 +6,7 @@ language: php
 
 # Versions of PHP to test against
 php:
-  - 7.0
+  - 7.1
   
 # Specify versions of WordPress to test against
 # WP_VERSION = WordPress version number (use "master" for SVN trunk)
@@ -43,4 +43,4 @@ deploy:
   script: ./scripts/deploy.sh
   on:
     branch: master
-    php: 7.0
+    php: 7.1
