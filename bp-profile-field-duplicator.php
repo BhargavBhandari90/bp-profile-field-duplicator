@@ -43,6 +43,24 @@ if ( ! defined( 'BPPFC_BASE_NAME' ) ) {
 }
 
 /**
+ * Apply transaltion file as per WP language.
+ */
+function bppfc_text_domain_loader() {
+
+	// Get mo file as per current locale.
+	$mofile = BPPFC_PATH . 'languages/' . get_locale() .'.mo';
+
+	// If file does not exists, then applu default mo.
+	if ( ! file_exists( $mofile ) ) {
+		$mofile = BPPFC_PATH . 'languages/default.mo';
+	}
+
+	load_textdomain( 'bp-profile-field-duplicator', $mofile );
+}
+
+add_action( 'plugins_loaded', 'bppfc_text_domain_loader' );
+
+/**
  * Display admin notice if BuddyPress is not activated.
  */
 function bppfc_admin_notice__error() {
