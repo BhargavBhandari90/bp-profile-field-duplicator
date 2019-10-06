@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
 if [[ -z "$TRAVIS" ]]; then
-	echo "Script is only to be run by Travis CI" 1>&2
-	exit 1
+    echo "Script is only to be run by Travis CI" 1>&2
+    exit 1
 fi
 
 if [[ -z "$WP_ORG_PASSWORD" ]]; then
-	echo "WordPress.org password not set" 1>&2
-	exit 1
+    echo "WordPress.org password not set" 1>&2
+    exit 1
 fi
 
 if [[ -z "$TRAVIS_BRANCH" || "$TRAVIS_BRANCH" != "master" ]]; then
-	echo "Build branch is required and must be 'master'" 1>&2
-	exit 0
+    echo "Build branch is required and must be 'master'" 1>&2
+    exit 0
 fi
 
 WP_ORG_USERNAME="bhargavbhandari90"
