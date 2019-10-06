@@ -7,7 +7,7 @@
  * Author URI:      bhargavb.wordpress.com/about-me
  * Text Domain:     bp-profile-field-duplicator
  * Domain Path:     /languages
- * Version:         1.0.0
+ * Version:         1.1.0
  *
  * @package         Bp_Profile_Field_Duplicator
  */
@@ -21,7 +21,7 @@ if ( ! defined( 'BPPFC_VERSION' ) ) {
 	/**
 	 * The version of the plugin.
 	 */
-	define( 'BPPFC_VERSION', '1.0.0' );
+	define( 'BPPFC_VERSION', '1.1.0' );
 }
 if ( ! defined( 'BPPFC_PATH' ) ) {
 	/**

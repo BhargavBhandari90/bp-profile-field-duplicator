@@ -3,9 +3,9 @@ Contributors: bhargavbhandari90
 Donate link: https://www.paypal.me/BnB90/50
 Tags: buddypress, profile field, duplicate
 Requires at least: 4.0
-Tested up to: 5.2
+Tested up to: 5.2.3
 Requires PHP: 5.6
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,3 +35,7 @@ https://www.youtube.com/watch?v=6FUTX_OdEqo
 == Changelog ==
 = 1.0.0 =
 * Initial release.
+
+= 1.1.0 =
+* Add translation support.
+* Improve code as per WP standard.
