@@ -1,10 +1,10 @@
 <?php
 /**
  * Plugin Name:     BuddyPress Profile Field Duplicator
- * Plugin URI:      bhargavb.wordpress.com
+ * Plugin URI:      https://bhargavb.com/buddypress-profile-field-duplicator-wordpress-plugin/
  * Description:     Make a duplicate of BuddyPress profile fields.
  * Author:          Bunty
- * Author URI:      bhargavb.wordpress.com/about-me
+ * Author URI:      https://bhargavb.com/
  * Text Domain:     bp-profile-field-duplicator
  * Domain Path:     /languages
  * Version:         1.1.0
