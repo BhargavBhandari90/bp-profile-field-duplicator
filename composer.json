@@ -1,18 +1,18 @@
 {
-    "description": "Make a duplicate of BuddyPress profile fields.",
-    "homepage": "https://github.com/BhargavBhandari90/bp-profile-field-duplicator",
-    "license": "MIT",
+    "name": "bhargav/comment-mention",
+    "autoload": {
+        "psr-4": {
+            "Bhargav\\CommentMention\\": "src/"
+        }
+    },
     "authors": [
         {
-            "name": "Bhargav Bhandari",
-            "email": "bn.bhandari90@gmail.com",
-            "homepage": "https://bhargavb.wordpress.com"
+            "name": "Bunty",
+            "email": "bhargav@buddyboss.com"
         }
     ],
-     "require-dev": {
-        "squizlabs/php_codesniffer": "3.*"
-    },
-    "support": {
-        "issues": "https://github.com/BhargavBhandari90/bp-profile-field-duplicator/issues"
+    "require-dev": {
+        "automattic/vipwpcs": "^2.3",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2"
     }
 }
