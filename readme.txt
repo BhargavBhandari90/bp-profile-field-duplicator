@@ -1,11 +1,11 @@
-=== BuddyPress Profile Field Duplicator ===
+=== Profile Field Duplicator for BuddyPress ===
 Contributors: bhargavbhandari90
 Donate link: https://www.paypal.me/BnB90/50
 Tags: buddypress, profile field, duplicate
 Requires at least: 4.0
-Tested up to: 5.9.3
+Tested up to: 6.7.2
 Requires PHP: 5.6
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,3 +39,6 @@ https://www.youtube.com/watch?v=6FUTX_OdEqo
 = 1.1.0 =
 * Add translation support.
 * Improve code as per WP standard.
+
+= 1.2.0 =
+* Changed plugin name to Profile Field Duplicator for BuddyPress.
