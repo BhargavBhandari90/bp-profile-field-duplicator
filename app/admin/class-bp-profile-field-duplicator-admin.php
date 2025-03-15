@@ -35,7 +35,6 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 
 			// Duplicate the profile field.
 			add_action( 'wp_ajax_bppfc_duplicate_field', array( $this, 'bppfc_duplicate_profile_field' ) );
-
 		}
 
 		/**
@@ -46,16 +45,18 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 		 */
 		public function bppfc_add_duplicator_button( $field ) {
 
-			echo sprintf(
+			printf(
 				'<a class="button bppfc_duplicator" href="javascript:void(0)" data-id="%d">%s</a><div class="spinner"></div>',
 				esc_attr( $field->id ),
 				esc_html__( 'Duplicate This', 'bp-profile-field-duplicator' )
 			);
-
 		}
 
 		/**
 		 * Enqueue custom script for the plugin.
+		 *
+		 * @param string $hook Hook Name.
+		 * @return void
 		 */
 		public function bppfc_enqueue_script( $hook ) {
 
@@ -72,10 +73,9 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 
 			);
 
-			wp_enqueue_script( 'field-duplicator-script', BPPFC_URL . 'assets/js/plugin.min.js' );
+			wp_enqueue_script( 'field-duplicator-script', BPPFC_URL . 'assets/js/plugin.min.js', array( 'jquery' ), BPPFC_VERSION, true );
 
 			wp_localize_script( 'field-duplicator-script', 'bppfc_obj', $setting_arr );
-
 		}
 
 		/**
@@ -168,7 +168,6 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 			}
 
 			wp_send_json_error( esc_html__( 'Fail to create duplicate field.', 'bp-profile-field-duplicator' ) );
-
 		}
 
 		/**
@@ -207,9 +206,7 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 				xprofile_insert_field( $field_args );
 
 			}
-
 		}
-
 	}
 
 	new BP_Profile_Field_Duplicator_Admin();
