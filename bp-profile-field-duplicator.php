@@ -37,7 +37,7 @@ if ( ! defined( 'BPPFC_URL' ) ) {
 }
 if ( ! defined( 'BPPFC_BASE_NAME' ) ) {
 	/**
-	 * The url to the plugin directory.
+	 * The plugin basename, e.g. bp-profile-field-duplicator/bp-profile-field-duplicator.php.
 	 */
 	define( 'BPPFC_BASE_NAME', plugin_basename( __FILE__ ) );
 }
@@ -88,7 +88,6 @@ function bppfc_admin_notice__error() {
 		esc_attr( $class ),
 		esc_html( $message )
 	);
-
 }
 
 add_action( 'admin_notices', 'bppfc_admin_notice__error' );
