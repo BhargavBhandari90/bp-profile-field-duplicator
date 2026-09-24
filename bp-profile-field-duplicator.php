@@ -43,25 +43,9 @@ if ( ! defined( 'BPPFC_BASE_NAME' ) ) {
 }
 
 /**
- * Apply transaltion file as per WP language.
- */
-function bppfc_text_domain_loader() {
-
-	// Get mo file as per current locale.
-	$mofile = BPPFC_PATH . 'languages/' . get_locale() .'.mo';
-
-	// If file does not exists, then applu default mo.
-	if ( ! file_exists( $mofile ) ) {
-		$mofile = BPPFC_PATH . 'languages/default.mo';
-	}
-
-	load_textdomain( 'bp-profile-field-duplicator', $mofile );
-}
-
-add_action( 'plugins_loaded', 'bppfc_text_domain_loader' );
-
-/**
- * Display admin notice if BuddyPress is not activated.
+ * Display an admin notice when BuddyPress is not active.
+ *
+ * @return void
  */
 function bppfc_admin_notice__error() {
 
@@ -78,9 +62,9 @@ function bppfc_admin_notice__error() {
 
 	// Display error if BuddyPress is not active.
 	$message = sprintf(
-		__( '%s works with BuddyPress only. Please activate BuddyPress or de-activate %s.', 'bp-profile-field-duplicator' ),
-		esc_html( $plugin_name ),
-		esc_html( $plugin_name )
+		/* translators: %1$s: Plugin name. */
+		__( '%1$s works with BuddyPress only. Please activate BuddyPress or deactivate %1$s.', 'bp-profile-field-duplicator' ),
+		$plugin_name
 	);
 
 	printf(

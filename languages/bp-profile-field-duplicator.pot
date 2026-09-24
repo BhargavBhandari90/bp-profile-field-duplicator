@@ -1,0 +1,72 @@
+# Copyright (C) 2026 Bunty
+# This file is distributed under the same license as the Profile Field Duplicator for BuddyPress plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Profile Field Duplicator for BuddyPress 1.2.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/bp-profile-field-duplicator\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-09-24T12:31:03+02:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: bp-profile-field-duplicator\n"
+
+#. Plugin Name of the plugin
+#: bp-profile-field-duplicator.php
+msgid "Profile Field Duplicator for BuddyPress"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: bp-profile-field-duplicator.php
+msgid "https://bhargavb.com/buddypress-profile-field-duplicator-wordpress-plugin/"
+msgstr ""
+
+#. Description of the plugin
+#: bp-profile-field-duplicator.php
+msgid "Make a duplicate of BuddyPress profile fields."
+msgstr ""
+
+#. Author of the plugin
+#: bp-profile-field-duplicator.php
+msgid "Bunty"
+msgstr ""
+
+#. Author URI of the plugin
+#: bp-profile-field-duplicator.php
+msgid "https://bhargavb.com/"
+msgstr ""
+
+#: app/admin/class-bp-profile-field-duplicator-admin.php:51
+msgid "Duplicate This"
+msgstr ""
+
+#: app/admin/class-bp-profile-field-duplicator-admin.php:71
+msgid "Are you sure you want to duplicate this?"
+msgstr ""
+
+#: app/admin/class-bp-profile-field-duplicator-admin.php:92
+msgid "Something went wrong."
+msgstr ""
+
+#: app/admin/class-bp-profile-field-duplicator-admin.php:101
+msgid "Field is not available."
+msgstr ""
+
+#. translators: %s: Name of the profile field being duplicated.
+#: app/admin/class-bp-profile-field-duplicator-admin.php:127
+#, php-format
+msgid "%s - Copy"
+msgstr ""
+
+#: app/admin/class-bp-profile-field-duplicator-admin.php:174
+msgid "Failed to create the duplicate field."
+msgstr ""
+
+#. translators: %1$s: Plugin name.
+#: bp-profile-field-duplicator.php:64
+#, php-format
+msgid "%1$s works with BuddyPress only. Please activate BuddyPress or deactivate %1$s."
+msgstr ""

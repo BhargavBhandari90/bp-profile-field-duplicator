@@ -122,7 +122,11 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 				'field_group_id'    => (int) $field->group_id,
 				'parent_id'         => (int) $field->parent_id,
 				'type'              => $field->type,
-				'name'              => $field->name . __( ' - Copy', 'bp-profile-field-duplicator' ),
+				'name'              => sprintf(
+					/* translators: %s: Name of the profile field being duplicated. */
+					__( '%s - Copy', 'bp-profile-field-duplicator' ),
+					$field->name
+				),
 				'description'       => $field->description,
 				'is_required'       => (bool) $field->is_required,
 				'can_delete'        => true,
@@ -167,7 +171,7 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 
 			}
 
-			wp_send_json_error( esc_html__( 'Fail to create duplicate field.', 'bp-profile-field-duplicator' ) );
+			wp_send_json_error( esc_html__( 'Failed to create the duplicate field.', 'bp-profile-field-duplicator' ) );
 		}
 
 		/**
