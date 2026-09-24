@@ -1,0 +1,22 @@
+name: Update readme and assets on WordPress.org
+
+# Run manually from the Actions tab (not on push): readme.txt on master can
+# carry an unreleased "Stable tag", which must not reach SVN trunk before the
+# matching release is deployed by wordpress-deploy.yml.
+on:
+  workflow_dispatch:
+
+jobs:
+  trunk:
+    name: Push readme.txt and .wordpress-org to WordPress.org
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout to plugin repository
+        uses: actions/checkout@v4
+
+      - name: WordPress.org plugin asset/readme update
+        uses: 10up/action-wordpress-plugin-asset-update@stable
+        env:
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          IGNORE_OTHER_FILES: true
