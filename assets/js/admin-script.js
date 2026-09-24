@@ -36,6 +36,18 @@
 				// Send post request.
 				jQuery.post( ajaxurl, data, function( response ) {
 
+					if ( ! response.success ) {
+
+						// Hide spinner and show the error returned by the server.
+						spinner.removeClass( 'is-active' );
+
+						if ( response.data ) {
+							window.alert( response.data );
+						}
+
+						return;
+					}
+
 					if ( response.success ) {
 
 						var group_id = response.group_id,
@@ -66,6 +78,15 @@
 
 					}
 
+				} ).fail( function( xhr ) {
+
+					// Hide spinner and show the error returned by the server, if any.
+					spinner.removeClass( 'is-active' );
+
+					if ( xhr.responseJSON && xhr.responseJSON.data ) {
+						window.alert( xhr.responseJSON.data );
+					}
+
 				} );
 
 			} );
@@ -74,8 +95,8 @@
 
 	};
 
-
-	$( document ).on( 'ready', function () {
+	// `$( document ).on( 'ready' )` was removed in jQuery 3.0, use the ready shorthand instead.
+	$( function () {
 
 		BP_Profile_Field_Duplicator_Script.init();
 
