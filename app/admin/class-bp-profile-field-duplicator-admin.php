@@ -87,22 +87,33 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 
 			// Bail, if anything goes wrong.
 			if ( ! function_exists( 'bp_is_active' )
+				|| ! bp_is_active( 'xprofile' )
 				|| empty( $_POST )
-				|| ( isset( $_POST['action'] ) && 'bppfc_duplicate_field' !== $_POST['action'] ) ) {
+				|| ( isset( $_POST['action'] ) && 'bppfc_duplicate_field' !== sanitize_key( wp_unslash( $_POST['action'] ) ) ) ) {
 				wp_send_json_error( esc_html__( 'Something went wrong.', 'bp-profile-field-duplicator' ) );
+			}
+
+			// Only users who can manage profile fields in BuddyPress may duplicate them.
+			if ( ! bp_current_user_can( 'bp_moderate' ) ) {
+				wp_send_json_error( esc_html__( 'You do not have permission to duplicate profile fields.', 'bp-profile-field-duplicator' ), 403 );
 			}
 
 			// Get the profile field ID.
 			$field_id = ( isset( $_POST['field_id'] ) && ! empty( $_POST['field_id'] ) )
-				? intval( $_POST['field_id'] )
+				? absint( wp_unslash( $_POST['field_id'] ) )
 				: 0;
 
 			if ( empty( $field_id ) ) {
 				wp_send_json_error( esc_html__( 'Field is not available.', 'bp-profile-field-duplicator' ) );
 			}
 
-			// Get field object.
-			$field      = xprofile_get_field( $field_id );
+			// Get field object and make sure the field really exists.
+			$field = xprofile_get_field( $field_id );
+
+			if ( empty( $field ) || empty( $field->id ) ) {
+				wp_send_json_error( esc_html__( 'Field is not available.', 'bp-profile-field-duplicator' ) );
+			}
+
 			$field_type = $field->type;
 			$options    = '';
 
