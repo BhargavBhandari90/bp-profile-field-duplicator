@@ -28,7 +28,7 @@ module.exports = {
 	jsVendorFile: 'vendor', // Compiled JS vendors file name. Default set to vendors i.e. vendors.js.
 
 	// JS Custom options.
-	jsCustomSRC: './assets/js/*.js', // Path to JS custom scripts folder.
+	jsCustomSRC: './assets/js/admin-script.js', // Source script only; a `*.js` glob also pulled in the compiled plugin.js/plugin.min.js and duplicated the code on every build.
 	jsCustomDestination: './assets/js/', // Path to place the compiled JS custom scripts file.
 	jsCustomFile: 'plugin', // Compiled JS custom file name. Default set to custom i.e. custom.js.
 
