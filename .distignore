@@ -3,6 +3,14 @@
 .editorconfig
 .git
 .gitignore
+.github
+.nvmrc
+.eslintrc.js
+.eslintignore
+gulpfile.babel.js
+wpgulp.config.js
+scripts
+build
 .gitlab-ci.yml
 .travis.yml
 .DS_Store

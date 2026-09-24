@@ -1,16 +1,26 @@
 <?php
 /**
- * Plugin Name:     Profile Field Duplicator for BuddyPress
- * Plugin URI:      https://bhargavb.com/buddypress-profile-field-duplicator-wordpress-plugin/
- * Description:     Make a duplicate of BuddyPress profile fields.
- * Author:          Bunty
- * Author URI:      https://bhargavb.com/
- * Text Domain:     bp-profile-field-duplicator
- * Domain Path:     /languages
- * Version:         1.2.0
+ * Plugin Name:       Profile Field Duplicator for BuddyPress
+ * Plugin URI:        https://bhargavb.com/buddypress-profile-field-duplicator-wordpress-plugin/
+ * Description:       Make a duplicate of BuddyPress profile fields.
+ * Author:            Bunty
+ * Author URI:        https://bhargavb.com/
+ * Text Domain:       bp-profile-field-duplicator
+ * Domain Path:       /languages
+ * Version:           1.3.0
+ * Requires at least: 4.0
+ * Requires PHP:      5.6
+ * Requires Plugins:  buddypress
+ * License:           GPL v2 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  *
  * @package         Bp_Profile_Field_Duplicator
  */
+
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Main file, contains the plugin metadata and activation processes
@@ -21,7 +31,7 @@ if ( ! defined( 'BPPFC_VERSION' ) ) {
 	/**
 	 * The version of the plugin.
 	 */
-	define( 'BPPFC_VERSION', '1.2.0' );
+	define( 'BPPFC_VERSION', '1.3.0' );
 }
 if ( ! defined( 'BPPFC_PATH' ) ) {
 	/**
