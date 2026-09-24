@@ -33,3 +33,6 @@ node_modules
 *.sql
 *.tar.gz
 *.zip
+
+# WordPress.org directory assets (deployed to SVN /assets, not the plugin zip)
+.wordpress-org
