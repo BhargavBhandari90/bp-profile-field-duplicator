@@ -1,10 +1,15 @@
 <?php
 /**
- * Exit if accessed directly
+ * Admin functionality for Profile Field Duplicator for BuddyPress.
+ *
+ * Adds a "Duplicate This" button to every field on the BuddyPress
+ * Users > Profile Fields screen and handles the AJAX request that
+ * creates the copy.
  *
  * @package Bp_Profile_Field_Duplicator
  */
 
+// Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -12,14 +17,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 	/**
-	 * Class for Ventures methods.
+	 * Duplicates BuddyPress extended profile (xprofile) fields from the admin.
 	 *
-	 * @package GCA_Core
+	 * @package Bp_Profile_Field_Duplicator
 	 */
 	class BP_Profile_Field_Duplicator_Admin {
 
 		/**
-		 * Cunstructor for admin class.
+		 * Register admin hooks.
+		 *
+		 * Nothing is registered on the front end.
 		 */
 		public function __construct() {
 
@@ -38,9 +45,12 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 		}
 
 		/**
-		 * Add button for duplication.
+		 * Print the "Duplicate This" button next to a profile field.
 		 *
-		 * @param  object $field Object of profile field.
+		 * Hooked to `xprofile_admin_field_action`, which BuddyPress fires for
+		 * every field row on the Profile Fields screen.
+		 *
+		 * @param  BP_XProfile_Field $field Profile field object.
 		 * @return void
 		 */
 		public function bppfc_add_duplicator_button( $field ) {
@@ -53,14 +63,12 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 		}
 
 		/**
-		 * Enqueue custom script for the plugin.
+		 * Enqueue the duplicator script on the Profile Fields screen only.
 		 *
-		 * @param string $hook Hook Name.
+		 * @param string $hook Current admin page hook suffix.
 		 * @return void
 		 */
 		public function bppfc_enqueue_script( $hook ) {
-
-			global $pagenow;
 
 			// Check if it's profile field page or not.
 			if ( 'users_page_bp-profile-setup' !== $hook ) {
@@ -79,7 +87,11 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 		}
 
 		/**
-		 * Duplicate the profile field.
+		 * AJAX callback: duplicate a profile field and return its admin markup.
+		 *
+		 * Sends a JSON response and exits.
+		 *
+		 * @return void
 		 */
 		public function bppfc_duplicate_profile_field() {
 
@@ -171,10 +183,11 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 		}
 
 		/**
-		 * Insert options for checkbox type field.
+		 * Copy the options of a checkbox, radio, select or multi-select field.
 		 *
-		 * @param  integer $parent_id Parent Field ID.
-		 * @param  array   $options   Array of child field object.
+		 * @param  int                 $parent_id ID of the new (duplicated) parent field.
+		 * @param  BP_XProfile_Field[] $options   Option fields of the original field.
+		 * @return void
 		 */
 		public function bppfc_insert_child( $parent_id = 0, $options = array() ) {
 
@@ -185,7 +198,7 @@ if ( ! class_exists( 'BP_Profile_Field_Duplicator_Admin' ) ) {
 				return;
 			}
 
-			foreach ( $options as $key => $option ) {
+			foreach ( $options as $option ) {
 
 				// Set args for creating new field.
 				$field_args = array(
